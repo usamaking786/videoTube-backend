@@ -1,1 +1,17 @@
-console.log("Here is your project has been setupinto the backend");
+import app from "./app.js";
+import dotenv from 'dotenv';
+import connectDb from "./db/index.js";
+
+// const PORT = 8001;
+dotenv.config({
+    path : "./.env"
+})
+const PORT = process.env.PORT || 8001;
+
+connectDb()
+.then(()=>{
+    app.listen(PORT,()=>{
+        console.log(`Server is listening onto the port,${PORT}`);
+    })
+})
+
